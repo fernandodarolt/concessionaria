@@ -1,5 +1,4 @@
 <?php
-    var_dump($_POST);
     $id = isset($_POST['id']) ? $_POST['id'] : $_GET['id'];
     $op = isset($_POST['op']) ? $_POST['op'] : $_GET['op'];
     $marca = isset($_POST['marca']) ? $_POST['marca'] : '';
