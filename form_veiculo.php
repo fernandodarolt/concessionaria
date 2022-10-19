@@ -10,11 +10,12 @@
     $ano_modelo = '';
     $ano_fabricacao = '';
     $op = 'inserir';
-    
+    $conexao = new PDO('mysql:host=localhost;port=3306;dbname=concessionaria','root','123456');
+
+
     if (isset($_GET['id'])){
         $id = $_GET['id'];
         $op = 'atualizar';
-        $conexao = new PDO('mysql:host=localhost;port=3306;dbname=concessionaria','root','123456');
         $sql = "SELECT * FROM veiculo WHERE id = {$id}";
         $dataset = $conexao->query($sql);
         $rs = $dataset->fetch();
@@ -49,7 +50,6 @@
                 <label for="modelo">Modelo:</label>
                 <select name="modelo">
                     <?php
-                        $conexao = new PDO('mysql:host=localhost;port=3306;dbname=concessionaria','root','123456');
                         $sql = 'SELECT * FROM modelo;';
                         $dataset    = $conexao->query($sql);
                         $resultset  = $dataset->fetchAll();
@@ -64,7 +64,6 @@
                 <label for="tipo_veiculo">Tipo:</label>
                 <select name="tipo_veiculo">
                     <?php
-                        $conexao = new PDO('mysql:host=localhost;port=3306;dbname=concessionaria','root','123456');
                         $sql = 'SELECT * FROM tipo_veiculo;';
                         $dataset    = $conexao->query($sql);
                         $resultset  = $dataset->fetchAll();
@@ -79,7 +78,6 @@
                 <label for="combustivel">Combustivel:</label>
                 <select name="combustivel">
                     <?php
-                        $conexao = new PDO('mysql:host=localhost;port=3306;dbname=concessionaria','root','123456');
                         $sql = 'SELECT * FROM combustivel;';
                         $dataset    = $conexao->query($sql);
                         $resultset  = $dataset->fetchAll();
@@ -121,15 +119,15 @@
             </div>
             <div>
                 <br/>
-                <label for="ano_modelo">Ano Modelo</label>
-                <br/>
-                <input type="text" id="ano_modelo" name="ano_modelo" value="<?=$ano_modelo?>"/>
-            </div>
-            <div>
-                <br/>
                 <label for="ano_fabricacao">Ano Fabricacao</label>
                 <br/>
                 <input type="text" id="ano_fabricacao" name="ano_fabricacao" value="<?=$ano_fabricacao?>"/>
+            </div>
+            <div>
+                <br/>
+                <label for="ano_modelo">Ano Modelo</label>
+                <br/>
+                <input type="text" id="ano_modelo" name="ano_modelo" value="<?=$ano_modelo?>"/>
             </div>
             <div>
                 <br/>

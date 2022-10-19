@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Veiculos</title>
+    <title>Lista de Veículos</title>
     <style>
         .text-left{
             text-align:left;
@@ -34,7 +34,7 @@
     </style>
 </head>
 <body>
-    <h3 class="titulo">Lista de Veiculos</h3>
+    <h3 class="titulo">Lista de Veículos</h3>
     <hr/>
     <div class="div-button">
         <a href="form_veiculo.php"><button>Novo</button></a>
@@ -61,9 +61,10 @@
                 $conexao = new PDO('mysql:host=localhost;port=3306;dbname=concessionaria','root','123456');
                 $sql = " SELECT *,
                 (SELECT mc.nome FROM marca mc WHERE m.marca = mc.id) 'mc',
-                (SELECT t.descricao FROM tipo_veiculo t WHERE t.id = v.tipo_veiculo) tipo,
+                (SELECT t.descricao FROM tipo_veiculo t WHERE t.id = v.tipo_veiculo) 'tipo',
                 m.descricao AS 'mod',
-                c.descricao AS 'comb'
+                c.descricao AS 'comb',
+                v.id AS 'cod'
                 FROM veiculo v
                 INNER JOIN modelo m ON m.id = v.modelo
                 INNER JOIN combustivel c ON c.id = v.combustivel";
@@ -72,7 +73,7 @@
                 foreach($rs as $row){
                     echo '
                         <tr>
-                            <td>'.$row['id'].'</td>
+                            <td>'.$row['cod'].'</td>
                             <td>'.$row['mod'].'</td>
                             <td>'.$row['tipo'].'</td>
                             <td>'.$row['comb'].'</td>
@@ -83,10 +84,10 @@
                             <td>'.$row['lotacao'].'</td>
                             <td>'.$row['ano_fabricacao'].'/'.$row['ano_modelo'].'</td>
                             <td class="text-center">
-                                <a href="form_veiculo.php?id='.$row['id'].'">Editar</a>
+                                <a href="form_veiculo.php?id='.$row['cod'].'">Editar</a>
                             </td>
                             <td class="text-center">
-                                <a href="crud_veiculo.php?op=excluir&id='.$row['id'].'">Excluir</a>
+                                <a href="crud_veiculo.php?op=excluir&id='.$row['cod'].'">Excluir</a>
                             </td>
                         </tr>
                     ';
